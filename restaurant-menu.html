@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emir Demir — المنيو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B241A;
+    --bg-soft: #0F2D21;
+    --card: #14392A;
+    --accent: #9AC7AC;
+    --accent-dim: #6E9C81;
+    --white: #FAFAF6;
+    --muted: #B9CDBF;
+    --line: rgba(250,250,246,0.14);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  h1,h2,.brand{ font-family: 'Aref Ruqaa', serif; }
+  .wordmark{ font-family: 'Cormorant Garamond', serif; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    min-height: 76vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 40px 24px;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(154,199,172,0.14), transparent 62%),
+      repeating-linear-gradient(135deg, rgba(250,250,246,0.028) 0px, rgba(250,250,246,0.028) 1px, transparent 1px, transparent 26px),
+      var(--bg);
+    overflow:hidden;
+  }
+
+  .hero::before{
+    content:"";
+    position:absolute;
+    width: 340px; height: 340px;
+    border: 1px solid rgba(250,250,246,0.14);
+    border-radius: 50%;
+    top: -90px; right: -90px;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    width: 220px; height: 220px;
+    border: 1px solid rgba(154,199,172,0.22);
+    border-radius: 50%;
+    bottom: -70px; left: -60px;
+  }
+
+  .hero .eyebrow{
+    color: var(--accent);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+  }
+
+  .hero .wordmark{
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .hero .brand-ar{
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 18px;
+  }
+
+  .hero p{
+    max-width: 460px;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .hero .divider{
+    width: 70px; height: 2px;
+    background: var(--accent);
+    margin: 26px auto;
+  }
+
+  /* ---------- Sticky category bar ---------- */
+  .cat-nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(11,36,26,0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .cat-nav::-webkit-scrollbar{ display:none; }
+
+  .cat-nav-inner{
+    display:flex;
+    gap: 6px;
+    padding: 14px 20px;
+    justify-content: center;
+    min-width: max-content;
+    margin: 0 auto;
+  }
+
+  .cat-nav a{
+    color: var(--muted);
+    text-decoration:none;
+    font-size: 0.98rem;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: color .25s ease, border-color .25s ease, background .25s ease;
+  }
+
+  .cat-nav a:hover{ color: var(--white); }
+
+  .cat-nav a.active{
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ---------- Menu sections ---------- */
+  .menu-wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section.category{
+    padding: 72px 0 40px;
+    scroll-margin-top: 74px;
+    border-bottom: 1px solid var(--line);
+  }
+  section.category:last-of-type{ border-bottom:none; }
+
+  .cat-heading{
+    display:flex;
+    align-items:baseline;
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+
+  .cat-heading h2{
+    font-size: 2.1rem;
+    color: var(--white);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .cat-heading .rule{
+    flex:1;
+    height:1px;
+    background: linear-gradient(to left, var(--line), transparent);
+  }
+
+  .cat-heading .num{
+    color: var(--accent-dim);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  .dish-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px 40px;
+  }
+
+  @media (max-width: 640px){
+    .dish-grid{ grid-template-columns: 1fr; }
+  }
+
+  .dish{
+    display:flex;
+    gap: 18px;
+    align-items:flex-start;
+  }
+
+  .dish-photo{
+    flex: none;
+    width: 90px; height: 90px;
+    border-radius: 12px;
+    background:
+      linear-gradient(150deg, rgba(154,199,172,0.30), rgba(154,199,172,0.05)),
+      var(--card);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: var(--accent);
+  }
+
+  .dish-photo svg{ width: 50px; height: 50px; }
+  .dish-photo img{ width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+  .dish-info{ flex:1; min-width:0; }
+
+  .dish-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .dish-name{
+    font-size: 1.12rem;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .dish-price{
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 1.05rem;
+  }
+
+  .dish-desc{
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- Photo note ---------- */
+  .photo-note{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px 10px;
+  }
+  .photo-note p{
+    color: var(--muted);
+    font-size: 0.85rem;
+    background: var(--bg-soft);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 30px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;
+    padding: 60px 24px 50px;
+  }
+  footer .wordmark{
+    font-size: 1.7rem;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  footer .divider{
+    width: 50px; height: 1px;
+    background: var(--line);
+    margin: 20px auto;
+  }
+  footer .fine{ font-size: 0.85rem; color: var(--muted); opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<!-- Reusable icon base (drink glass) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="ic-glass" viewBox="0 0 100 100">
+      <path d="M28 22 L72 22 L64 86 L36 86 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="58" y1="6" x2="70" y2="24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">مرحباً بكم في</div>
+    <div class="wordmark">Emir Demir</div>
+    <div class="brand-ar">إمير دمير</div>
+    <div class="divider"></div>
+    <p>قهوة مثلجة وسموذي طازج وحلويات مختارة بعناية، في أجواء هادئة تليق بيومك</p>
+  </div>
+
+  <!-- STICKY CATEGORY NAV -->
+  <nav class="cat-nav">
+    <div class="cat-nav-inner">
+      <a href="#coffee" class="active">قهوة مثلجة</a>
+      <a href="#smoothie">سموذي</a>
+      <a href="#desserts">حلويات</a>
+    </div>
+  </nav>
+
+  <div class="menu-wrap">
+
+    <!-- ICED COFFEE -->
+    <section class="category" id="coffee">
+      <div class="cat-heading">
+        <h2>قهوة مثلجة</h2>
+        <div class="rule"></div>
+        <span class="num">01</span>
+      </div>
+      <div class="dish-grid">
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <path d="M38 42 Q50 48 62 42" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M38 56 Q50 62 62 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="40" y="68" width="7" height="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="52" y="70" width="7" height="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">آيس أمريكانو</span><span class="dish-price">3,000</span></div>
+            <div class="dish-desc">إسبريسو مضاعف مع ماء بارد وثلج، نكهة نقية ومنعشة</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <img src="iced-latte.jpg" alt="آيس لاتيه">
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">آيس لاتيه</span><span class="dish-price">3,500</span></div>
+            <div class="dish-desc">إسبريسو مع حليب بارد كريمي وطبقة ثلج</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <path d="M33 28 Q40 34 33 38 Q40 44 33 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M46 26 Q53 32 46 36 Q53 42 46 46" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M59 24 Q66 30 59 34 Q66 40 59 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">آيس كراميل ماكياتو</span><span class="dish-price">4,000</span></div>
+            <div class="dish-desc">حليب مثلج مع شراب الفانيليا وصوص الكراميل</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <path d="M40 30 Q50 24 60 30 Q52 34 60 40 Q50 46 44 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">آيس موكا</span><span class="dish-price">4,000</span></div>
+            <div class="dish-desc">مزيج إسبريسو وشوكولاتة داكنة وحليب بارد</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SMOOTHIE -->
+    <section class="category" id="smoothie">
+      <div class="cat-heading">
+        <h2>سموذي</h2>
+        <div class="rule"></div>
+        <span class="num">02</span>
+      </div>
+      <div class="dish-grid">
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <path d="M50 10 C40 10 34 18 38 26 C42 32 58 32 62 26 C66 18 60 10 50 10 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="45" cy="18" r="1.6" fill="currentColor"/>
+              <circle cx="53" cy="22" r="1.6" fill="currentColor"/>
+              <circle cx="48" cy="24" r="1.6" fill="currentColor"/>
+              <line x1="50" y1="6" x2="50" y2="10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">سموذي فراولة</span><span class="dish-price">4,500</span></div>
+            <div class="dish-desc">فراولة طازجة مخفوقة مع زبادي وقليل من العسل</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <ellipse cx="50" cy="18" rx="16" ry="9" fill="none" stroke="currentColor" stroke-width="2.5" transform="rotate(-18 50 18)"/>
+              <path d="M40 16 Q50 14 60 20" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">سموذي مانجا</span><span class="dish-price">4,500</span></div>
+            <div class="dish-desc">مانجا استوائية طازجة، قوام كريمي ونكهة غنية</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <circle cx="42" cy="18" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="56" cy="16" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="49" cy="26" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">سموذي توت أزرق</span><span class="dish-price">5,000</span></div>
+            <div class="dish-desc">توت أزرق وتوت بري مع لبن رائب وقطرات ليمون</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100"><use href="#ic-glass"/>
+              <path d="M50 8 C38 10 34 24 42 30 C46 33 54 33 58 30 C66 24 62 10 50 8 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="50" cy="20" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">سموذي أفوكادو</span><span class="dish-price">5,500</span></div>
+            <div class="dish-desc">أفوكادو طازج مع حليب جوز الهند وقليل من العسل</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DESSERTS -->
+    <section class="category" id="desserts">
+      <div class="cat-heading">
+        <h2>حلويات</h2>
+        <div class="rule"></div>
+        <span class="num">03</span>
+      </div>
+      <div class="dish-grid">
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100">
+              <path d="M20 78 L50 20 L80 78 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <line x1="20" y1="78" x2="80" y2="78" stroke="currentColor" stroke-width="3"/>
+              <circle cx="50" cy="30" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">تشيز كيك بالتوت</span><span class="dish-price">5,000</span></div>
+            <div class="dish-desc">طبقة جبن كريمي ناعمة فوق قاعدة بسكويت مع صوص توت</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100">
+              <rect x="24" y="24" width="52" height="52" rx="4" fill="none" stroke="currentColor" stroke-width="3"/>
+              <path d="M32 60 L44 46 L52 54 L68 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="60" cy="42" r="3" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">براوني بالشوكولاتة</span><span class="dish-price">4,000</span></div>
+            <div class="dish-desc">براوني دافئ غني بالشوكولاتة الداكنة، يقدم مع آيس كريم</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100">
+              <rect x="26" y="22" width="48" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="3"/>
+              <line x1="26" y1="40" x2="74" y2="40" stroke="currentColor" stroke-width="2"/>
+              <line x1="26" y1="58" x2="74" y2="58" stroke="currentColor" stroke-width="2"/>
+              <circle cx="42" cy="30" r="1.4" fill="currentColor"/>
+              <circle cx="50" cy="32" r="1.4" fill="currentColor"/>
+              <circle cx="58" cy="29" r="1.4" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">تيراميسو</span><span class="dish-price">5,500</span></div>
+            <div class="dish-desc">طبقات بسكويت مقهّى مع كريمة الماسكاربوني وكاكاو</div>
+          </div>
+        </div>
+
+        <div class="dish">
+          <div class="dish-photo">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="3"/>
+              <circle cx="40" cy="42" r="2.6" fill="currentColor"/>
+              <circle cx="58" cy="40" r="2.6" fill="currentColor"/>
+              <circle cx="50" cy="55" r="2.6" fill="currentColor"/>
+              <circle cx="62" cy="58" r="2.6" fill="currentColor"/>
+              <circle cx="38" cy="60" r="2.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="dish-info">
+            <div class="dish-top"><span class="dish-name">كوكيز بالشوكولاتة</span><span class="dish-price">3,000</span></div>
+            <div class="dish-desc">كوكيز طازج مقرمش من الخارج وطري من الداخل</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="photo-note">
+      <p>الأيقونات هذي رسوم مصممة خصيصاً بدل الصور الفوتوغرافية، لأن استخدام صور جاهزة من الإنترنت بموقع تجاري حي يعرّضك لمشكلة حقوق ملكية. لمن ترسلي صور المنتجات الفعلية مالتك، أستبدلها فوراً بصور حقيقية.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="wordmark">Emir Demir</div>
+    <p class="fine">الأسعار بالدينار العراقي وقابلة للتغيير</p>
+    <div class="divider"></div>
+    <p class="fine">شكراً لزيارتكم — بانتظار عودتكم</p>
+  </footer>
+
+<script>
+  const links = document.querySelectorAll('.cat-nav a');
+  const sections = document.querySelectorAll('section.category');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+        const activeLink = document.querySelector('.cat-nav a.active');
+        if (activeLink) {
+          activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>
